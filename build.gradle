@@ -5,7 +5,7 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:3.6.4'
+		classpath 'com.android.tools.build:gradle:7.0.4'
 	}
 }
 
@@ -60,8 +60,7 @@ android {
 		renderscript.srcDirs = ['src']
 		res.srcDirs = ['res', 'lang']
 		assets.srcDirs = ['assets']
-		jni.srcDirs = []
-		jniLibs.srcDirs = []
+        jniLibs.srcDirs = []
 	}
 
 	def locales = sourceSets.main.res.srcDirs
