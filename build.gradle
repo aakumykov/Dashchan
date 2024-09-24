@@ -130,24 +130,22 @@ android {
 		minifyEnabled !debuggable
 		proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 	}
-
 	packagingOptions {
-		exclude '/lib/*/libavcodec.so'
-		exclude '/lib/*/libavformat.so'
-		exclude '/lib/*/libavutil.so'
-		exclude '/lib/*/libswresample.so'
-		exclude '/lib/*/libswscale.so'
-		exclude '/lib/*/libyuv.so'
-		exclude '/META-INF/*.version'
+		jniLibs {
+			excludes += ['/lib/*/libavcodec.so', '/lib/*/libavformat.so', '/lib/*/libavutil.so', '/lib/*/libswresample.so', '/lib/*/libswscale.so', '/lib/*/libyuv.so']
+		}
+		resources {
+			excludes += ['/META-INF/*.version']
+		}
 	}
 
-	lintOptions {
-		disable 'MissingTranslation', 'ValidFragment', 'ResourceType'
-	}
 
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8
 		targetCompatibility JavaVersion.VERSION_1_8
+	}
+	lint {
+		disable 'MissingTranslation', 'ValidFragment', 'ResourceType'
 	}
 }
 
