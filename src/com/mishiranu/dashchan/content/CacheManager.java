@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
+import android.util.Log;
 import android.util.Pair;
 import androidx.annotation.NonNull;
 import chan.content.Chan;
@@ -328,7 +329,11 @@ public class CacheManager implements Runnable {
 	}
 
 	public boolean isCacheAvailable() {
-		return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
+//		return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
+		String ess = Environment.getExternalStorageState();
+		Log.d("", "ess: "+ess);
+		boolean isMounted = Environment.MEDIA_MOUNTED.equals(ess);
+		return isMounted;
 	}
 
 	public long getCacheSize() {
@@ -538,6 +543,7 @@ public class CacheManager implements Runnable {
 	private final Object directoryLocker = new Object();
 
 	private volatile File externalCacheDirectory;
+	private volatile File internalCacheDirectory;
 	private volatile File externalTempDirectory;
 
 	private File getExternalCacheDirectory() {
@@ -549,6 +555,17 @@ public class CacheManager implements Runnable {
 			}
 		}
 		return externalCacheDirectory;
+	}
+
+	private File getInternalCacheDirectory() {
+		if (internalCacheDirectory == null) {
+			synchronized (directoryLocker) {
+				if (internalCacheDirectory == null) {
+					internalCacheDirectory = MainApplication.getInstance().getCacheDir();
+				}
+			}
+		}
+		return internalCacheDirectory;
 	}
 
 	private File getExternalTempDirectory() {
