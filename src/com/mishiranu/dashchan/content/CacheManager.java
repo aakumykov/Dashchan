@@ -354,7 +354,10 @@ public class CacheManager implements Runnable {
 	private File getCacheDirectory(String name) {
 		File directory = getExternalCacheDirectory();
 		if (directory == null) {
-			return null;
+			directory = getInternalCacheDirectory();
+			if (directory == null) {
+				return null;
+			}
 		}
 		File file = new File(directory, name);
 		if (isCacheAvailable() && !file.exists()) {
