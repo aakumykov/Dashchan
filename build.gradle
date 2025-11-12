@@ -23,7 +23,7 @@ tasks.withType(JavaCompile) {
 }
 
 android {
-	compileSdkVersion 30
+	compileSdkVersion 34
 	buildToolsVersion '30.0.2'
 	ndkVersion '21.4.7075529'
 
@@ -32,7 +32,7 @@ android {
 		versionName '3.1.4'
 
 		minSdkVersion 16
-		targetSdkVersion 30
+		targetSdkVersion 34
 		renderscriptTargetApi 21
 
 		// noinspection UnnecessaryQualifiedReference
