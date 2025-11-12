@@ -29,7 +29,8 @@
 
 		<activity
 			android:name=".ui.MainActivity"
-			android:launchMode="singleTask">
+			android:launchMode="singleTask"
+            android:exported="true">
 
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -51,6 +52,7 @@
 			android:taskAffinity=".postingshare"
 			android:launchMode="singleInstance"
 			android:excludeFromRecents="true"
+            android:exported="true"
 			android:theme="@android:style/Theme.Translucent.NoTitleBar">
 
 			<intent-filter>
